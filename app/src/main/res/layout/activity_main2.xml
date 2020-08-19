@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
+
+
+    <EditText
+        android:id="@+id/reguser"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginTop="72dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.353"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/regpass"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginTop="72dp"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.353"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reguser"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/regadno"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Adhaar"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.353"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regpass"
+        app:layout_constraintVertical_bias="0.052"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/regdob"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:hint="dd/mm/yyyy"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.353"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regadno"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="118dp"
+        android:layout_height="74dp"
+        android:background="@color/white"
+        android:text="Submit"
+        android:textColorHighlight="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.443"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regdob"
+        app:layout_constraintVertical_bias="0.471" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

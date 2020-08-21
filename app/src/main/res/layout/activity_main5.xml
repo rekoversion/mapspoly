@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity4" >
+  <fragment
+      android:id="@+id/map"
+      android:name="com.google.android.gms.maps.SupportMapFragment"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_marginBottom="-6dp"
+        android:background="@color/white"
+        android:padding="10dp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="linewidth"
+            android:textStyle="bold"/>
+
+        <SeekBar
+            android:id="@+id/seek1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:max="20"
+            android:progress="3"
+
+            android:progressTint="#A9A9A9"
+            android:thumbTint="#A9A9A9" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="color"
+            android:textStyle="bold"
+
+            />
+
+        <SeekBar
+            android:id="@+id/seekr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:max="255"
+            android:progressTint="#FF0000"
+            android:thumbTint="#FF0000" />
+
+        <SeekBar
+            android:id="@+id/seekg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:max="255"
+            android:progressTint="#00FF00"
+            android:thumbTint="#00FF00" />
+
+        <SeekBar
+            android:id="@+id/seekb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:max="255"
+            android:progressTint="#0000FF"
+            android:thumbTint="#0000FF" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2" >
+
+        <Button
+            android:id="@+id/drawm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="map area" />
+
+        <Button
+            android:id="@+id/clr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="clear" />.
+        </LinearLayout>
+        </LinearLayout>
+
+</RelativeLayout>
+
+

@@ -8,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Lifecycle;
 
 import android.view.View;
 import android.widget.Button;
@@ -39,10 +40,14 @@ public class MainActivity2 extends AppCompatActivity {
         regdata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 boolean insertdata = myDb.insertdata(user.getText().toString(),pass.getText().toString(),adno.getText().toString());
            if (insertdata == true) {
                Toast.makeText(MainActivity2.this, "data inserted", Toast.LENGTH_LONG).show();
                backtoactivity();
+
+
            }
            else {
                Toast.makeText(MainActivity2.this, "data not inserted", Toast.LENGTH_LONG).show();
@@ -57,4 +62,5 @@ public class MainActivity2 extends AppCompatActivity {
 
 
     }
+
 }

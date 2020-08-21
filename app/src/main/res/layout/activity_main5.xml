@@ -20,7 +20,11 @@
         android:layout_marginBottom="-6dp"
         android:background="@color/white"
         android:padding="10dp" >
-
+<CheckBox
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="fill polygon"
+    android:id="@+id/check_box"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

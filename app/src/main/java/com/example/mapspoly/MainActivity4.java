@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -26,6 +28,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,7 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity4 extends FragmentActivity implements OnMapReadyCallback, OnSeekBarChangeListener {
-Polyline polyline =null;
+Polygon polygon =null;
 List<LatLng> latLngList = new ArrayList<>();
 List<Marker> markerList =new ArrayList<>();
 int lr=0,lg=0;
@@ -47,6 +51,7 @@ int lblue=0;
     String TAG = "MapActivity4";
     SeekBar linewidth,green,red,blue;
     Button btndraw,btnclr;
+    CheckBox checkBox;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,37 +60,51 @@ int lblue=0;
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(MainActivity4.this);
-
+        checkBox=(CheckBox)findViewById(R.id.check_box);
         linewidth=(SeekBar) findViewById(R.id.seek1);
         green =(SeekBar) findViewById(R.id.seekg);
         red=(SeekBar) findViewById(R.id.seekr);
         blue=(SeekBar) findViewById(R.id.seekb);
         btndraw=(Button)findViewById(R.id.drawm);
         btnclr =(Button)findViewById(R.id.clr);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){if(polygon==null) return;
+                         polygon.setFillColor(Color.rgb(lr,lg,lblue));
+
+
+                }else{polygon.setFillColor(Color.TRANSPARENT);}
+            }
+        });
 btndraw.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         //DRAW POLYLINE
-        if(polyline!=null){polyline.remove();}
-        PolylineOptions polylineOptions=new PolylineOptions().addAll(latLngList).clickable(true);
-        polyline=mMap.addPolyline(polylineOptions);
+        if(polygon!=null)polygon.remove();
+       PolygonOptions polygonOptions=new PolygonOptions().addAll(latLngList).clickable(true);
+      polygon=mMap.addPolygon(polygonOptions);
+    polygon.setStrokeColor(Color.rgb(lr,lg,lblue));
+    if (checkBox.isChecked()){
+        polygon.setFillColor(Color.rgb(lr,lg,lblue));
 
+    }
     }
 });
 btnclr.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         //CLEAR
-        if (polyline!=null){polyline.remove();}
-        for(Marker marker: markerList){
-            marker.remove();
+        if (polygon!=null)polygon.remove();
+        for(Marker marker: markerList) marker.remove();
             latLngList.clear();
+            checkBox.setChecked(false);
             markerList.clear();
             linewidth.setProgress(3);
             red.setProgress(0);
             green.setProgress(0);
             blue.setProgress(0);
-        }
+
     }
 });
 
@@ -118,7 +137,7 @@ mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
         Marker marker = mMap.addMarker(markerOptions);
         latLngList.add(latLng);
         markerList.add(marker);
-        polyline.setColor(Color.rgb(lr,lg,lblue));
+
         SetWidth();
 
     }
@@ -133,9 +152,8 @@ mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 //get progress
                 int width = linewidth.getProgress();
-                if(polyline!=null){
-                    polyline.setWidth(width);
-                }
+                if(polygon!=null) polygon.setStrokeWidth(width);
+
             }
 
             @Override
@@ -153,20 +171,22 @@ mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-switch (seekBar.getId()){
-    case R.id.seekr:
-        lr=i;
-        break;
-    case R.id.seekg:
-        lg=i;
-        break;
-    case R.id.seekb:
-        lblue=i;
+        switch (seekBar.getId()) {
+            case R.id.seekr:
+                lr = i;
+                break;
+            case R.id.seekg:
+                lg = i;
+                break;
+            case R.id.seekb:
+                lblue = i;
 
-}
-    polyline.setColor(Color.rgb(lr,lg,lblue));
+        }
+        if (polygon != null) {
+            polygon.setStrokeColor(Color.rgb(lr, lg, lblue));
+            if (checkBox.isChecked()) polygon.setFillColor(Color.rgb(lr, lg, lblue));
+        }
     }
-
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
 
